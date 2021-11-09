@@ -1,3 +1,4 @@
+const { RSA_NO_PADDING } = require('constants')
 const crypto = require('crypto')
 const User = require('../models/Users')
 const ErrorResponse = require ('../utils/errorResponse')
@@ -48,4 +49,11 @@ exports.register = async (req, res, next) =>{
        
     }
  
+ }
+
+ exports.getApi = async(req, res, next)=> {
+    res.send({
+        error: false,
+        message: 'success'
+    })
  }
