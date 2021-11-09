@@ -29,11 +29,22 @@ const UserSchema = mongoose.Schema({
 
     numberOfApplications:{
         type: Number,
-        required: [true, 'Please add number of applicants'],
     },
 
     candidatesEmails:{
         type:[String]
+    },
+
+    gender:{
+        type:String
+    },
+
+    location:{
+        type:String
+    },
+
+    educationLevel:{
+        type:String
     },
 
     createdAt: {

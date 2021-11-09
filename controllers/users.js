@@ -9,10 +9,9 @@ const ErrorResponse = require ('../utils/errorResponse')
 exports.register = async (req, res, next) =>{
     try {
 
-        const {type, firstName, lastName, email, phoneNumber, numberOfApplications, candidatesEmails } = req.body
-        res.set('Access-Control-Allow-Origin', '*');
+        const {type, firstName, lastName, email, phoneNumber, numberOfApplications, candidatesEmails, gender, location, educationLevel } = req.body
         const duplicateEmail = await User.findOne({email:req.body.email})
-        console.log(duplicateEmail)
+        // console.log(duplicateEmail)
 
         if(duplicateEmail) {
             res.status(400).json({
@@ -27,7 +26,10 @@ exports.register = async (req, res, next) =>{
                 email,
                 phoneNumber,
                 numberOfApplications,
-                candidatesEmails
+                candidatesEmails,
+                gender, 
+                location, 
+                educationLevel
             })
     
             res.status(200).json({
