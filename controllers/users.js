@@ -9,7 +9,7 @@ exports.register = async (req, res, next) =>{
     try {
 
         const {type, firstName, lastName, email, phoneNumber, numberOfApplications, candidatesEmails } = req.body
-
+        res.set('Access-Control-Allow-Origin', '*');
         const duplicateEmail = await User.findOne({email:req.body.email})
         console.log(duplicateEmail)
 
