@@ -3,6 +3,8 @@ const dotenv = require('dotenv')
 const morgam = require('morgan')
 const cookieParser = require('cookie-parser')
 const connectDB = require('./config/db')
+const cors = require("cors");
+
 // const errorHandler = require('./middleware/error')
 // const {protectRoutes} = require('./middleware/auth')
 
@@ -23,6 +25,8 @@ app.use(express.json())
 
 // Cookie parser
 app.use(cookieParser())
+
+app.use(cors())
 
 
 // dev logging
