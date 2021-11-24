@@ -54,8 +54,45 @@ exports.register = async (req, res, next) =>{
  }
 
  exports.getApi = async(req, res, next)=> {
-    res.send({
-        error: false,
-        message: 'success'
-    })
+     try {
+        res.send({
+            error: false,
+            message: 'success'
+        })
+     } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            error:true,
+            message: 'Server Error'
+        })
+     }
+    
  }
+
+ exports.checkEmail = async(req, res, next)=> {
+    try {
+        const duplicateEmail = await User.findOne({email:req.body.email})
+        // console.log(duplicateEmail)
+
+        if(duplicateEmail) {
+            res.status(400).json({
+                error: true,
+                message: 'This email as already been registered.'
+            })
+        } else {
+            res.status(200).json({
+             error: false,
+             data: req.body.email,
+             message: 'Email is good to go',
+         })
+         next()
+        }
+    } catch (error) {
+       console.log(error)
+       res.status(500).json({
+           error:true,
+           message: 'Server Error'
+       })
+    }
+   
+}
